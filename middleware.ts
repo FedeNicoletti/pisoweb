@@ -1,13 +1,25 @@
-import { authMiddleware } from "@clerk/nextjs";
- 
-// This example protects all routes including api/trpc routes
-// Please edit this to allow other routes to be public as needed.
-// See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your middleware
-export default authMiddleware({
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+// Use dynamic import for @clerk/nextjs
+let authMiddleware;
+
+if (typeof window === 'undefined') {
+  authMiddleware = require('@clerk/nextjs').authMiddleware;
+}
+
+// Define a dummy middleware for Edge environment compatibility
+const dummyMiddleware = (req: NextRequest) => {
+  return NextResponse.next();
+};
+
+const myAuthMiddleware = authMiddleware ? authMiddleware : dummyMiddleware;
+
+// Export the middleware function
+export default myAuthMiddleware({
   publicRoutes: ["/api/webhook"]
 });
- 
+
 export const config = {
   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
 };
- 

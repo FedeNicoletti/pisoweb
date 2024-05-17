@@ -8,8 +8,8 @@ import { ConfettiProvider } from '@/components/providers/confetti-provider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Functional Solutions',
-  description: 'Functional Solutions APP',
+  title: 'El Sopi Veggie',
+  description: 'El Sopi Veggie',
 }
 
 export default function RootLayout({
