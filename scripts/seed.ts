@@ -6,10 +6,10 @@ async function main() {
   try {
     await database.category.createMany({
       data: [
-        { name: "Strength" },
-        { name: "Mobility" },
-        { name: "Rehab" },
-        { name: "Nutrition" },
+        { name: "Ecosostenibilidad" },
+        { name: "Cocina Dulce" },
+        { name: "Masa madre" },
+        { name: "Plantas Olvidadas" },
       ]
     });
 
